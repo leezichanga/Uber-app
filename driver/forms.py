@@ -1,3 +1,8 @@
+from django import forms
+from django.contrib.auth.models import User
+from driver.models import Reviews
+from .models import PassengerProfile, Location, Reviews
+
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
@@ -17,4 +22,4 @@ class DriverReviewForm(forms.ModelForm):
 class LocationForm(forms.ModelForm):
     class Meta:
         model = Location
-        fields = ['current', 'destination']    
+        fields = ['current', 'destination']
