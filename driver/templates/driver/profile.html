@@ -1,0 +1,45 @@
+{% extends 'driver/driver_base.html' %} {% load bootstrap3 %} {% load static %} {% block content %}
+<div class="col-md-7 col-lg-7">
+  <h3>{{user.first_name}}'s Profile</h3>
+
+  <div class="driver-details">
+    <div class="col-md-6 col-lg-6">
+
+      {% if profile.profile_pic %}
+      <img src="{{profile.profile_pic.url}}" alt="User PPic"> {% else %}
+      <img src="profile.getImage" alt="Avatar"> {% endif %}
+
+      <h4>First Name</h4>
+      <h5>{{profile.user.first_name}}</h5>
+      <h4>Last Name</h4>
+      <h5>{{profile.user.last_name}}</h5>
+      <hr>
+
+      <h3>Location:</h3>
+      <h4>Current Location</h4>
+      <h5>{{location.current}}</h5>
+      <h4>Destination</h4>
+      <h5>{{location.destination}}</h5> {% if user %}
+      <a href="{% url 'driver:update_location_view' user.username %}" class="btn btn-info btn-sm">Update Location</a> {% else %}
+      <a href="{% url 'driver:update_location_view' user.username %}" style="display:none"></a> {% endif %} {% if not user %}
+      <h4>Email</h4> <em><h5>Email is hidden</h5></em> {% else %}
+      <h4>Email</h4> <em><h5>{{profile.user.email}}</h5></em> {% endif %}
+      <hr>
+      <h4>Gender</h4>
+      <h5>{{profile.gender}}</h5>
+      <hr>
+
+      <h4>Vehicle:</h4>
+      <h4>Car Capacity</h4>
+      <h5>{{profile.car_capacity}}</h5>
+      <h4>Car Plates</h4>
+      <h5>{{profile.plates}}</h5>
+      <h4>Car Color</h4>
+      <h5>{{profile.car_color}}</h5>
+    </div>
+    <a href="{% url 'driver:update_profile_view' request.user.username %}"><span class="fa fa-pencil"></span><h4>Update Profile</h4></a>
+
+  </div>
+
+</div>
+{% endblock%}

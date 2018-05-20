@@ -49,6 +49,105 @@ def update_profile(request, username):
         else:
             messages.error(request, ('Please correct the error below.'))
     else:
+        user_form = Udef update_profile(request, username):
+    user = User.objects.get(username = username)
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = DriverProfileForm(request.POST, instance=request.user.driverprofile, files=request.FILES)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, ('Your profile was successfully updated!'))
+            return HttpResponseRedirect("/driver/profile/%s"%user.username)
+        else:
+            messages.error(request, ('Please correct the error below.'))
+    else:
+        user_form = UserForm(instance = request.user)
+        profile_form = DriverProfileForm(instance = request.user.def update_profile(request, username):
+    user = User.objects.get(username = username)
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = DriverProfileForm(request.POST, instance=request.user.driverprofile, files=request.FILES)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, ('Your profile was successfully updated!'))
+            return HttpResponseRedirect("/driver/profile/%s"%user.username)
+        else:
+            messages.error(request, ('Please correct the error below.'))
+    else:
+        user_form = UserForm(instance = request.user)
+        profile_form = DriverProfileForm(instance = request.user.def update_profile(request, username):
+    user = User.objects.get(username = username)
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = DriverProfileForm(request.POST, instance=request.user.driverprofile, files=request.FILES)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, ('Your profile was successfully updated!'))
+            return HttpResponseRedirect("/driver/profile/%s"%user.username)
+        else:
+            messages.error(request, ('Please correct the error below.'))
+    else:
+        user_form = UserForm(instance = request.user)
+        profile_form = DriverProfileForm(instance = request.userdef update_profile(request, username):
+    user = User.objects.get(username = username)
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = DriverProfileForm(request.POST, instance=request.user.driverprofile, files=request.FILES)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, ('Your profile was successfully updated!'))
+            return HttpResponseRedirect("/driver/profile/%s"%user.username)
+        else:def update_profile(request, username):
+    user = User.objects.get(username = username)
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = DriverProfileForm(request.POST, instance=request.user.driverprofile, files=request.FILES)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, ('Your profile was successfully updated!'))
+            return HttpResponseRedirect("/driver/profile/%s"%user.username)
+        else:
+            messages.error(request, ('Please correct the error below.'))
+    else:
         user_form = UserForm(instance = request.user)
         profile_form = DriverProfileForm(instance = request.user.driverprofile)
     return render(request, 'driver/update_profile.html', {"user_form": user_form,"profile_form": profile_form})
+            messages.error(request, ('Please correct the error below.'))
+    else:
+        user_form = UserForm(instance = request.user)
+        profile_form = DriverProfileForm(instance = request.user.driverprofile)
+    return render(request, 'driver/update_profile.html', {"user_form": user_form,"profile_form": profile_form}).driverprofile)
+    return render(request, 'driver/update_profile.html', {"user_form": user_form,"profile_form": profile_form})driverprofile)
+    return render(request, 'driver/update_profile.html', {"user_form": user_form,"profile_form": profile_form})driverprofile)
+    return render(request, 'driver/update_profile.html', {"user_form": user_form,"profile_form": profile_form})serForm(instance = request.user)
+        profile_form = DriverProfileForm(instance = request.user.driverprofile)
+    return render(request, 'driver/update_profile.html', {"user_form": user_form,"profile_form": profile_form})
+
+
+def update_location(request, username):
+    user = User.objects.get(username = username)
+
+    if request.method == 'POST':
+        location_form = LocationForm(request.POST, instance=request.user.driver_location)
+        print(location_form)
+        if location_form.is_valid():
+            location_form.save()
+            messages.success(request, ('You have updated your location.'))
+            return HttpResponseRedirect("/driver/profile/%s"%user.username)
+        else:
+            messages.error(request, ('Please correct the error.'))
+    else:
+        location_form = LocationForm(instance=request.user.driver_location)
+
+    title = 'Update Location'
+    return render(request, 'driver/update_location.html', {"title":title, "form":location_form})

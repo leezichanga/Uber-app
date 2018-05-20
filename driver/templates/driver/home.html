@@ -1,0 +1,37 @@
+{% extends 'driver/driver_base.html' %} {% load bootstrap3 %} {% block content %}
+<div class="col-md-7 col-lg-7">
+  <h3>{{user.first_name}} Trips</h3>
+  <div class="col-md-6">
+    {% for passenger in carpool %}
+    <h4>{{passenger.name}}</h4>
+    <h5>{{passenger.destination}}</h5> {% endfor %}
+  </div>
+  {% if user != request.user %}
+  <div class="col-md-6">
+    {% if form.errors %}
+    <p> Some Information Might be Incorrect </p>
+    {% endif %}
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <h3 class="text-center">Book a Seat</h3>
+      </div>
+      <div class="panel-body">
+
+        <form action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %} {% bootstrap_form form %}
+
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-sm" value="Book Seat">
+          </div>
+
+          <input type="hidden" name="next" value="{{next}}">
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
