@@ -1,0 +1,32 @@
+{% load bootstrap3 %} {% load static %}
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> {% if title %}
+
+    <title>{{title}}</title>
+
+    {% endif %} {% block styles %} {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/passenger.css' %}" /> {% endblock %}
+
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      {% include 'passenger/passenger_sidenav.html' %} {% block content %} {% endblock %}
+    </div>
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %}
+    <script src="{% static 'js/passenger.js' url%}"></script>
+    <script src="{% static 'js/marker-map.js' url%}"></script>
+    <script src="https://use.fontawesome.com/b0e34048aa.js"></script>
+    {% endblock %}
+
+  </body>
+
+</html>
