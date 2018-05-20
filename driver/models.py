@@ -48,3 +48,8 @@ class Location(models.Model):
     def save_user_location(sender,instance,**kwargs):
         instance.driver_location.save()
     # end of link
+
+class CarPool(models.Model):
+    name = models.CharField(max_length=50, blank=True)
+    destination = models.CharField(max_length=100, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
