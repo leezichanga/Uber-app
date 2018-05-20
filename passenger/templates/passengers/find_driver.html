@@ -1,0 +1,11 @@
+{% extends 'passenger/pass_base.html' %} {% load bootstrap3 %} {% block content %}
+<div class="col-md-7 col-lg-7">
+  <h3>Find Drivers</h3> {% for driver in drivers %} {% if user != driver.user %} {% if driver.profile_pic %}
+  <img src="{{driver.profile_pic.url}}" alt="User PPic"> {% else %}
+  <img src="driver.getImage" alt="Avatar"> {% endif %}
+  <h4>{{driver.user.first_name}} {{driver.user.last_name}}</h4>
+  <a href="{% url 'passenger:driver_profile' driver.user.id %}" class="btn btn-info btn-lg">View Profile</a>
+  <a href="{% url 'driver:home' driver.user.username %}" class="btn btn-success btn-lg">Book a Seat</a>
+  <hr> {% endif %} {% endfor %}
+</div>
+{% endblock %}

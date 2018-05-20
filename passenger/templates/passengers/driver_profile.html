@@ -1,0 +1,61 @@
+{% extends 'passenger/pass_base.html' %} {% load bootstrap3 %} {% load static %} {% block content %}
+<div class="col-md-7 col-lg-7 view-update">
+  {% for profile in profile %}
+  <h3>{{profile.user.first_name}}'s Profile</h3>
+
+  <div class="driver-details">
+    {% if profile.profile_pic %}
+    <img src="{{profile.profile_pic.url}}" alt="User PPic"> {% else %}
+    <img src="profile.getImage" alt="Avatar"> {% endif %}
+    <h4>First Name</h4>
+    <h5>{{profile.user.first_name}}</h5>
+    <h4>Last Name</h4>
+    <h5>{{profile.user.last_name}}</h5>
+    <hr>
+
+    <h3>Location:</h3>
+    <h4>Current Location</h4>
+    <h5>{{location.current}}</h5>
+    <h4>Destination</h4>
+    <h5>{{location.destination}}</h5> {% if not profile.user %}
+    <h4>Email</h4> <em><h5>Email is hidden</h5></em> {% else %}
+    <h4>Email</h4> <em><h5>{{profile.user.email}}</h5></em> {% endif %}
+    <hr>
+    <h4>Gender</h4>
+    <h5>{{profile.gender}}</h5>
+    <hr>
+    <h4>Vehicle:</h4>
+    <h4>Car Capacity</h4>
+    <h5>{{profile.car_capacity}}</h5>
+    <h4>Car Plates</h4>
+    <h5>{{profile.plates}}</h5>
+    <h4>Car Color</h4>
+    <h5>{{profile.car_color}}</h5>
+    <ul class="comment-list">
+      <li class="comment-list__comment">
+        {{ profile.user.username }}
+        <span class="comment">{{ profile.user.email }}</span>
+      </li>
+      {% for comment in post.comment_set.all %}
+      <li class="comment-list__comment">
+        <a href="{% url 'profile' comment.user.username %}" class="user">
+                        {{ comment.user.username }}
+                    </a>
+        <span class="comment">{{ comment.comment }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    <section class="input-row">
+      <div class="comment-input-wrapper">
+        <input class="add-comment" type="text" placeholder="Add a comment...">
+      </div>
+      <div class="hidden-data {{ driver.id }}" style="display: none;">
+        <span class="driver_id">{{ profile.user.id }}</span>
+      </div>
+    </section>
+
+  </div>
+
+  {% endfor %}
+</div>
+{% endblock%}
