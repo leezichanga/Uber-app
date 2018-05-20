@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from .models import PassengerProfile, Location, Reviews
 from driver.models import DriverProfile
+from .forms import UserForm, PassengerProfileForm, DriverReviewForm, LocationForm
 
 # Create your views here.
 
