@@ -23,3 +23,14 @@ def home(request, username):
 
     title = 'Driver'
     return render(request, 'driver/home.html', {'title':title, "user":user, "carpool":carpool, "form":carpool_form})
+
+def profile(request, username):
+    '''
+    render driver information
+    '''
+    user = User.objects.get(username=username)
+    profile = DriverProfile.objects.get(user=user)
+    location = Location.objects.get(user=user)
+
+    title = f"{user.username}"
+    return render(request, 'driver/profile.html', {"user":user, "profile":profile, "location":location})
