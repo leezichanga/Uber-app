@@ -11,3 +11,13 @@ class DriverProfileForm(forms.ModelForm):
     class Meta:
         model = DriverProfile
         fields = ['profile_pic', 'gender', 'car_capacity', 'plates', 'car_color']
+
+class LocationForm(forms.ModelForm):
+    class Meta:
+        model = Location
+        fields = ['current', 'destination']
+
+class CarPoolForm(forms.ModelForm):
+    class Meta:
+        model = CarPool
+        fields = ['name', 'destination']
