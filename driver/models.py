@@ -53,3 +53,8 @@ class CarPool(models.Model):
     name = models.CharField(max_length=50, blank=True)
     destination = models.CharField(max_length=100, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Reviews(models.Model):
+    review = models.TextField(blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='driver_reviews')
