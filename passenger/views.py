@@ -1,4 +1,13 @@
 from django.shortcuts import render
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.views.generic import View
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from .models import PassengerProfile, Location, Reviews
+from driver.models import DriverProfile
 
 # Create your views here.
 
