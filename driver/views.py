@@ -34,3 +34,21 @@ def profile(request, username):
 
     title = f"{user.username}"
     return render(request, 'driver/profile.html', {"user":user, "profile":profile, "location":location})
+
+def update_profile(request, username):
+    user = User.objects.get(username = username)
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = DriverProfileForm(request.POST, instance=request.user.driverprofile, files=request.FILES)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, ('Your profile was successfully updated!'))
+            return HttpResponseRedirect("/driver/profile/%s"%user.username)
+        else:
+            messages.error(request, ('Please correct the error below.'))
+    else:
+        user_form = UserForm(instance = request.user)
+        profile_form = DriverProfileForm(instance = request.user.driverprofile)
+    return render(request, 'driver/update_profile.html', {"user_form": user_form,"profile_form": profile_form})
