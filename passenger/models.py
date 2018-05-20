@@ -42,4 +42,7 @@ class Location(models.Model):
     def save_user_location(sender,instance,**kwargs):
         instance.passenger_location.save()
     # end of link
-    
+
+class Reviews(models.Model):
+    review = models.TextField(blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='passenger_reviews')
