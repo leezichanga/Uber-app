@@ -151,3 +151,16 @@ def update_location(request, username):
 
     title = 'Update Location'
     return render(request, 'driver/update_location.html', {"title":title, "form":location_form})
+
+def find_passenger(request):
+    passengers = PassengerProfile.objects.all()
+
+    title = 'Find Passenger'
+    return render(request, 'passenger/find_passenger.html', {"title":title, "passengers":passengers})
+
+def driver_profile(request, passenger_id):
+    user = User.objects.get(id=passenger_id)
+    passenger_profile = PassengerProfile.objects.filter(user=user)
+
+    title = 'Passenger Profile'
+    return render(request, 'driver/passenger_profile.html', {"title":title, "profile":passenger_profile})
