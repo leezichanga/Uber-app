@@ -1,4 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.views.generic import View
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 # Create your views here.
 def home(request, username):
@@ -97,7 +104,18 @@ def update_profile(request, username):
         profile_form = DriverProfileForm(instance = request.userdef update_profile(request, username):
     user = User.objects.get(username = username)
     if request.method == 'POST':
-        user_form = UserForm(request.POST, instance=request.user)
+        user_def find_passenger(request):
+    passengers = PassengerProfile.objects.all()
+
+    title = 'Find Passenger'
+    return render(request, 'passenger/find_passenger.html', {"title":title, "passengers":passengers})
+
+def driver_profile(request, passenger_id):
+    user = User.objects.get(id=passenger_id)
+    passenger_profile = PassengerProfile.objects.filter(user=user)
+
+    title = 'Passenger Profile'
+    return render(request, 'driver/passenger_profile.html', {"title":title, "profile":passenger_profile})form = UserForm(request.POST, instance=request.user)
         profile_form = DriverProfileForm(request.POST, instance=request.user.driverprofile, files=request.FILES)
 
         if user_form.is_valid() and profile_form.is_valid():
