@@ -37,3 +37,9 @@ def update_profile(request, username):
 
     title = 'Update Profile'
     return render(request, 'passenger/update_profile.html', {"title":title, "user_form": user_form, "profile_form": profile_form})
+
+def find_driver(request):
+    drivers = DriverProfile.objects.all()
+
+    title = 'Find Driver'
+    return render(request, 'passenger/find_driver.html', {"title":title, "drivers":drivers})
