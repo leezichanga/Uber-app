@@ -1,0 +1,65 @@
+{% load bootstrap3 %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Car Poolers</title>
+    {% block styles %} {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}" /> {% endblock %}
+  </head>
+
+  <body>
+    <div class="container-fluid home-container">
+
+      <div class="jumbotron">
+        <div class="row">
+
+          {% if request.user.is_authenticated %}
+          <h1>Car Poolers</h1>
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="panel">
+              <div class="panel-body panel-button">
+                <a href="{% url 'driver:home' user.username %}"><button class="btn btn-info btn-lg">Sign in as a Driver</button></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="panel">
+              <div class="panel-body panel-button">
+                <a href="passenger/home/"><button class="btn btn-info btn-lg">Sign in as a Passenger</button></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="panel">
+              <div class="panel-body panel-button">
+                <a href="/logout/"><button class="btn btn-info btn-lg">Logout</button></a>
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <div class="col-md-8">
+            <h1>Car Poolers</h1>
+            <h2>Are you driving somewhere? Do you need to get somewhere? Save some cash and car pool!</h2>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="panel">
+              <div class="panel-body">
+                <a href="accounts/login/"><button class="btn btn-info btn-lg">Sign in to App</button></a>
+              </div>
+              <div class="panel-footer">
+                <em class="auth-redir">Don't have an account? <a href="accounts/register/">Register here</a></em>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

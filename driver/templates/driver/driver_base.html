@@ -15,17 +15,12 @@
   </head>
 
   <body>
-    <div class="container-fluid">
-      {% include 'driver/driver_sidenav.html'%} {% block content %} {% endblock %}
-    </div>
 
     {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     {% bootstrap_javascript %}
     <script src="https://use.fontawesome.com/b0e34048aa.js"></script>
-    <!-- <script src="{% static 'js/driver.js' url%}"></script> -->
-    <script src="{% static 'js/ajax_tokens.js' url%}"></script>
-    <script src="{% static 'js/marker-map.js' url%}"></script>
+
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdHoyRN24loeP8pO0iSo6kMRPd5CbfrWA&callback=initMap" type="text/javascript"></script>
     {% endblock %}
 
